@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-THRESHOLD=80
+source "$(dirname "$0")/../config/server.conf"
+THRESHOLD=${DISK_THRESHOLD:-80}
 usage=$(df -P / | awk 'NR==2 {print $5}' | tr -d '%')
 
 if [ "$usage" -gt "$THRESHOLD" ]; then
